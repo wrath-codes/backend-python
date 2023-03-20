@@ -1,11 +1,12 @@
 from typing import List
 
+from src.data.interfaces import IUserRepository
 from src.domain.models import Users
 from src.infra.config import DBConnectionHandler
 from src.infra.entities import Users as UserModel
 
 
-class UserRepository:
+class UserRepository(IUserRepository):
     """Class to manage User repository"""
 
     @classmethod
