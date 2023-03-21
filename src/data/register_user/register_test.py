@@ -22,8 +22,6 @@ def test_register():
         name=atributes["name"], password=atributes["password"]
     )
 
-    print(response)
-
     # Testing input
     assert user_repo.insert_user_params["name"] == atributes["name"]
     assert user_repo.insert_user_params["password"] == atributes["password"]
@@ -47,8 +45,6 @@ def test_register_fail():
     response = register_user.register(
         name=atributes["name"], password=atributes["password"]
     )
-
-    print(response)
 
     # Testing input
     assert user_repo.insert_user_params == {}
