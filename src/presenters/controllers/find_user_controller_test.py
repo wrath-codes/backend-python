@@ -161,3 +161,23 @@ def test_handle_invalid_name():
     # Testing Outputs
     assert response.status_code == 422
     assert "error" in response.body
+
+
+def test_handle_wrong_query():
+    """Testing handle Method with wrong query param"""
+
+    find_user_use_case = FindUserSpy(UserRepositorySpy())
+    find_user_controller = FindUserController(find_user_use_case)
+
+    http_request = HttpRequest(query={"wrong": fake.word()})
+
+    response = find_user_controller.handle(http_request)
+
+    # Testing Input
+    assert find_user_use_case.by_id_and_name_params == {}
+    assert find_user_use_case.by_id_params == {}
+    assert find_user_use_case.by_name_params == {}
+
+    # Testing Outputs
+    assert response.status_code == 422
+    assert "error" in response.body

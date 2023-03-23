@@ -6,7 +6,7 @@ from src.presenters.helpers import HttpRequest, HttpResponse
 
 
 class RegisterPetController:
-    """Class to define route to register_pet use case"""
+    """Class to define controller to register_pet use case"""
 
     def __init__(self, register_pet_use_case: Type[RegisterPet]):
         self.register_pet_use_case = register_pet_use_case

@@ -1,8 +1,7 @@
 from faker import Faker
 
 from src.data.test import RegisterPetSpy
-from src.infra.test import PetRepositorySpy
-from src.infra.test.user_repository_spy import UserRepositorySpy
+from src.infra.test import PetRepositorySpy, UserRepositorySpy
 from src.presenters.helpers import HttpRequest
 
 from .register_pet_controller import RegisterPetController
@@ -11,7 +10,7 @@ fake = Faker()
 
 
 def test_handle():
-    """Testing route method in RegisterPetController"""
+    """Testing handle method in RegisterPetController"""
 
     register_pet_use_case = RegisterPetSpy(PetRepositorySpy(), UserRepositorySpy())
     register_pet_route = RegisterPetController(register_pet_use_case)
