@@ -22,3 +22,14 @@ class HttpErrors:
                 "error": "Bad Request",
             },
         }
+
+    @staticmethod
+    def error_409():
+        """HTTP 409 error"""
+
+        return {
+            "status_code": 409,
+            "body": {
+                "error": "Conflict",
+            },
+        }
