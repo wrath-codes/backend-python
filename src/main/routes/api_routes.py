@@ -3,10 +3,10 @@ from flask import Blueprint, jsonify, request
 from src.main.adapter import flask_adapter
 from src.main.composer import register_user_composer
 
-api_routes_bp = Blueprint("api_routes_bp", __name__)
+api_routes_bp = Blueprint("api_routes_bp", __name__, url_prefix="/api")
 
 
-@api_routes_bp.route("/api/users", methods=["POST"])
+@api_routes_bp.route("/users", methods=["POST"])
 def register_user():
     """register user route"""
 

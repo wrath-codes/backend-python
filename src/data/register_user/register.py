@@ -6,7 +6,7 @@ from src.domain.use_cases import RegisterUser as IRegisterUser
 
 
 class RegisterUser(IRegisterUser):
-    """Class to define usecase : Register User"""
+    """Class to define use case : Register User"""
 
     def __init__(self, user_repository: Type[UserRepository]):
         self.user_repository = user_repository
