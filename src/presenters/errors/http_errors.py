@@ -33,3 +33,14 @@ class HttpErrors:
                 "error": "Conflict",
             },
         }
+
+    @staticmethod
+    def error_500():
+        """HTTP 500 error"""
+
+        return {
+            "status_code": 500,
+            "body": {
+                "error": "Internal Server Error",
+            },
+        }
