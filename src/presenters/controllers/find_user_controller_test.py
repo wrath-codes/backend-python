@@ -16,15 +16,15 @@ def test_handle():
     find_user_controller = FindUserController(find_user_use_case)
 
     http_request = HttpRequest(
-        query={"user_id": fake.random_number(), "name": fake.word()}
+        query={"id_user": fake.random_number(), "name": fake.word()}
     )
 
     response = find_user_controller.handle(http_request)
 
     # Testing Inputs
     assert (
-        find_user_use_case.by_id_and_name_params["user_id"]
-        == http_request.query["user_id"]
+        find_user_use_case.by_id_and_name_params["id_user"]
+        == http_request.query["id_user"]
     )
     assert (
         find_user_use_case.by_id_and_name_params["name"] == http_request.query["name"]
@@ -62,15 +62,15 @@ def test_handle_invalid_query_params():
     find_user_controller = FindUserController(find_user_use_case)
 
     http_request = HttpRequest(
-        query={"user_id": fake.word(), "name": fake.random_number()}
+        query={"id_user": fake.word(), "name": fake.random_number()}
     )
 
     response = find_user_controller.handle(http_request)
 
     # Testing Input
     assert (
-        find_user_use_case.by_id_and_name_params["user_id"]
-        == http_request.query["user_id"]
+        find_user_use_case.by_id_and_name_params["id_user"]
+        == http_request.query["id_user"]
     )
     assert (
         find_user_use_case.by_id_and_name_params["name"] == http_request.query["name"]
@@ -83,8 +83,8 @@ def test_handle_invalid_query_params():
     assert "error" in response.body
 
 
-def test_handle_no_user_id():
-    """Testing handle Method with no user_id query param"""
+def test_handle_no_id_user():
+    """Testing handle Method with no id_user query param"""
 
     find_user_use_case = FindUserSpy(UserRepositorySpy())
     find_user_controller = FindUserController(find_user_use_case)
@@ -109,13 +109,13 @@ def test_handle_no_name():
     find_user_use_case = FindUserSpy(UserRepositorySpy())
     find_user_controller = FindUserController(find_user_use_case)
 
-    http_request = HttpRequest(query={"user_id": fake.random_number()})
+    http_request = HttpRequest(query={"id_user": fake.random_number()})
 
     response = find_user_controller.handle(http_request)
 
     # Testing Input
     assert find_user_use_case.by_id_and_name_params == {}
-    assert find_user_use_case.by_id_params["user_id"] == http_request.query["user_id"]
+    assert find_user_use_case.by_id_params["id_user"] == http_request.query["id_user"]
     assert find_user_use_case.by_name_params == {}
 
     # Testing Outputs
@@ -123,19 +123,19 @@ def test_handle_no_name():
     assert response.body
 
 
-def test_handle_invalid_user_id():
-    """Testing handle Method with invalid user_id query param"""
+def test_handle_invalid_id_user():
+    """Testing handle Method with invalid id_user query param"""
 
     find_user_use_case = FindUserSpy(UserRepositorySpy())
     find_user_controller = FindUserController(find_user_use_case)
 
-    http_request = HttpRequest(query={"user_id": fake.word()})
+    http_request = HttpRequest(query={"id_user": fake.word()})
 
     response = find_user_controller.handle(http_request)
 
     # Testing Input
     assert find_user_use_case.by_id_and_name_params == {}
-    assert find_user_use_case.by_id_params["user_id"] == http_request.query["user_id"]
+    assert find_user_use_case.by_id_params["id_user"] == http_request.query["id_user"]
     assert find_user_use_case.by_name_params == {}
 
     # Testing Outputs

@@ -11,17 +11,17 @@ class FindUser(IFindUser):
     def __init__(self, user_repository: Type[UserRepository]):
         self.user_repository = user_repository
 
-    def by_id(self, user_id: int) -> Dict[bool, List[Users]]:
+    def by_id(self, id_user: int) -> Dict[bool, List[Users]]:
         """Select User by id
-        :param user_id: id of the user
+        :param id_user: id of the user
         :return: Dict with information about the process
         """
 
         response = None
-        validate_entry = isinstance(user_id, int)
+        validate_entry = isinstance(id_user, int)
 
         if validate_entry:
-            response = self.user_repository.select_user(user_id=user_id)
+            response = self.user_repository.select_user(id_user=id_user)
 
         return {"Success": validate_entry, "Data": response}
 
@@ -39,17 +39,17 @@ class FindUser(IFindUser):
 
         return {"Success": validate_entry, "Data": response}
 
-    def by_id_and_name(self, user_id: int, name: str) -> Dict[bool, List[Users]]:
+    def by_id_and_name(self, id_user: int, name: str) -> Dict[bool, List[Users]]:
         """Select User by id and name
-        :param user_id: id of the user
+        :param id_user: id of the user
         :param name: name of the user
         :return: Dict with information about the process
         """
 
         response = None
-        validate_entry = isinstance(user_id, int) and isinstance(name, str)
+        validate_entry = isinstance(id_user, int) and isinstance(name, str)
 
         if validate_entry:
-            response = self.user_repository.select_user(user_id=user_id, name=name)
+            response = self.user_repository.select_user(id_user=id_user, name=name)
 
         return {"Success": validate_entry, "Data": response}

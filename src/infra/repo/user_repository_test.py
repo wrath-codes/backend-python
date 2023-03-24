@@ -39,10 +39,10 @@ def test_insert_user():
 def test_select_user():
     """Should select a user in Users table and compare it"""
 
-    user_id = fake.random_number(digits=5)
+    id_user = fake.random_number(digits=5)
     name = fake.name()
     password = fake.word()
-    data = UsersModel(id=user_id, name=name, password=password)
+    data = UsersModel(id=id_user, name=name, password=password)
 
     engine = db_connection_handler.get_engine()
 
@@ -50,15 +50,15 @@ def test_select_user():
         conn.execute(
             text(
                 "INSERT INTO users (id, name, password) VALUES ({}, '{}', '{}')".format(
-                    user_id, name, password
+                    id_user, name, password
                 )
             )
         )
         conn.commit()
 
-    query_user1 = user_repository.select_user(user_id=user_id)
+    query_user1 = user_repository.select_user(id_user=id_user)
     query_user2 = user_repository.select_user(name=name)
-    query_user3 = user_repository.select_user(user_id=user_id, name=name)
+    query_user3 = user_repository.select_user(id_user=id_user, name=name)
 
     assert data in query_user1
     assert data in query_user2
@@ -66,5 +66,5 @@ def test_select_user():
 
     # Delete User
     with engine.connect() as conn:
-        conn.execute(text("DELETE FROM users WHERE id = {}".format(user_id)))
+        conn.execute(text("DELETE FROM users WHERE id = {}".format(id_user)))
         conn.commit()

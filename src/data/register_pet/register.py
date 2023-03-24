@@ -18,9 +18,9 @@ class RegisterPet(IRegisterPet):
     ) -> Dict[bool, Pets]:
         """Registry Pet
         :param - name: pet name
-               - specie: type of the specie
-               - age: age of the pet
-               - user_information: Dictionary with id_user and/or user_name
+                   - specie: type of the specie
+                   - age: age of the pet
+                   - user_information: Dictionary with id_user and/or user_name
         :return - Dictionary with information about the process
         """
 
@@ -37,7 +37,7 @@ class RegisterPet(IRegisterPet):
 
         if checker:
             response = self.pet_repository.insert_pet(
-                name, specie, age, user_information["user_id"]
+                name, specie, age, user_information["id_user"]
             )
 
         return {"Success": checker, "Data": response}
@@ -52,16 +52,16 @@ class RegisterPet(IRegisterPet):
         user_found = None
         user_params = user_information.keys()
 
-        if "user_id" in user_params and "user_name" in user_params:
+        if "id_user" in user_params and "user_name" in user_params:
             user_found = self.find_user.by_id_and_name(
-                user_information["user_id"], user_information["user_name"]
+                user_information["id_user"], user_information["user_name"]
             )
 
-        elif "user_id" not in user_params and "user_name" in user_params:
+        elif "id_user" not in user_params and "user_name" in user_params:
             user_found = self.find_user.by_name(user_information["user_name"])
 
-        elif "user_id" in user_params and "user_name" not in user_params:
-            user_found = self.find_user.by_id(user_information["user_id"])
+        elif "id_user" in user_params and "user_name" not in user_params:
+            user_found = self.find_user.by_id(user_information["id_user"])
 
         else:
             return {"Success": False, "Data": None}

@@ -15,10 +15,10 @@ def test_by_id():
     attributes = {
         "id": fake.random_number(digits=2),
     }
-    response = find_user.by_id(user_id=attributes["id"])
+    response = find_user.by_id(id_user=attributes["id"])
 
     # Testing inputs
-    assert user_repo.select_user_params["user_id"] == attributes["id"]
+    assert user_repo.select_user_params["id_user"] == attributes["id"]
 
     # Testing outputs
     assert response["Success"] is True
@@ -32,7 +32,7 @@ def test_by_id_fail():
     find_user = FindUser(user_repo)
 
     attribute = {"id": fake.word()}
-    response = find_user.by_id(user_id=attribute["id"])
+    response = find_user.by_id(id_user=attribute["id"])
 
     # Testing Input
     assert user_repo.select_user_params == {}
@@ -87,11 +87,11 @@ def test_by_id_and_name():
         "name": fake.name(),
     }
     response = find_user.by_id_and_name(
-        user_id=attributes["id"], name=attributes["name"]
+        id_user=attributes["id"], name=attributes["name"]
     )
 
     # Testing inputs
-    assert user_repo.select_user_params["user_id"] == attributes["id"]
+    assert user_repo.select_user_params["id_user"] == attributes["id"]
     assert user_repo.select_user_params["name"] == attributes["name"]
 
     # Testing outputs
@@ -106,7 +106,7 @@ def test_by_id_and_name_fail():
     find_user = FindUser(user_repo)
 
     attribute = {"id": fake.word(), "name": fake.random_number(digits=2)}
-    response = find_user.by_id_and_name(user_id=attribute["id"], name=attribute["name"])
+    response = find_user.by_id_and_name(id_user=attribute["id"], name=attribute["name"])
 
     # Testing Input
     assert user_repo.select_user_params == {}

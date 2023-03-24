@@ -19,7 +19,7 @@ def test_handle():
     )
 
     response = find_pet_controller.handle(http_request)
-
+    print(response)
     # Testing Inputs
     assert (
         find_pet_use_case.by_pet_id_and_id_user_params["pet_id"]

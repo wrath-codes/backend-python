@@ -20,7 +20,7 @@ def test_registry():
         "specie": fake.name(),
         "age": fake.random_number(digits=1),
         "user_information": {
-            "user_id": fake.random_number(digits=5),
+            "id_user": fake.random_number(digits=5),
             "user_name": fake.name(),
         },
     }
@@ -39,8 +39,8 @@ def test_registry():
 
     # Testing FindUser Inputs
     assert (
-        find_user.by_id_and_name_params["user_id"]
-        == attributes["user_information"]["user_id"]
+        find_user.by_id_and_name_params["id_user"]
+        == attributes["user_information"]["id_user"]
     )
     assert (
         find_user.by_id_and_name_params["name"]
@@ -64,7 +64,7 @@ def test_registry_invalid_pet():
         "specie": fake.random_number(digits=5),
         "age": fake.name(),
         "user_information": {
-            "user_id": fake.random_number(digits=5),
+            "id_user": fake.random_number(digits=5),
             "user_name": fake.name(),
         },
     }
@@ -81,8 +81,8 @@ def test_registry_invalid_pet():
 
     # Testing FindUser Inputs
     assert (
-        find_user.by_id_and_name_params["user_id"]
-        == attributes["user_information"]["user_id"]
+        find_user.by_id_and_name_params["id_user"]
+        == attributes["user_information"]["id_user"]
     )
     assert (
         find_user.by_id_and_name_params["name"]

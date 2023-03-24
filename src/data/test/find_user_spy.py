@@ -13,12 +13,12 @@ class FindUserSpy:
         self.by_name_params = {}
         self.by_id_and_name_params = {}
 
-    def by_id(self, user_id: int) -> Dict[bool, List[Users]]:
+    def by_id(self, id_user: int) -> Dict[bool, List[Users]]:
         """Select User by id"""
 
-        self.by_id_params["user_id"] = user_id
+        self.by_id_params["id_user"] = id_user
         response = None
-        validate_entry = isinstance(user_id, int)
+        validate_entry = isinstance(id_user, int)
 
         if validate_entry:
             response = [mock_users()]
@@ -37,13 +37,13 @@ class FindUserSpy:
 
         return {"Success": validate_entry, "Data": response}
 
-    def by_id_and_name(self, user_id: int, name: str) -> Dict[bool, List[Users]]:
+    def by_id_and_name(self, id_user: int, name: str) -> Dict[bool, List[Users]]:
         """Select User by id and name"""
 
-        self.by_id_and_name_params["user_id"] = user_id
+        self.by_id_and_name_params["id_user"] = id_user
         self.by_id_and_name_params["name"] = name
         response = None
-        validate_entry = isinstance(user_id, int) and isinstance(name, str)
+        validate_entry = isinstance(id_user, int) and isinstance(name, str)
 
         if validate_entry:
             response = [mock_users()]

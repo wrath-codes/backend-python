@@ -27,7 +27,7 @@ class Pets(Base):
     id_user = Column(Integer, ForeignKey("users.id"))
 
     def __repr__(self):
-        return f"Pet: [name={self.name}, specie={self.specie}, user_id={self.id_user}]"
+        return f"Pet: [name={self.name}, specie={self.specie}, id_user={self.id_user}]"
 
     def __eq__(self, other):
         if (

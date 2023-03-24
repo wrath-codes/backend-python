@@ -19,10 +19,10 @@ class UserRepositorySpy:
 
         return mock_users()
 
-    def select_user(self, user_id: int = None, name: str = None) -> List[Users]:
+    def select_user(self, id_user: int = None, name: str = None) -> List[Users]:
         """Spy to all the attributes of the method"""
 
-        self.select_user_params["user_id"] = user_id
+        self.select_user_params["id_user"] = id_user
         self.select_user_params["name"] = name
 
         return [mock_users()]

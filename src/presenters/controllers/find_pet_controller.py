@@ -25,7 +25,7 @@ class FindPetController(IRoute):
             if "pet_id" in query_string_params and "id_user" in query_string_params:
                 pet_id = http_request.query["pet_id"]
                 id_user = http_request.query["id_user"]
-                response = self.find_pet_use_case.by_pet_id_and_id_user(
+                response = self.find_pet_use_case.by_pet_id_and_user_id(
                     pet_id=pet_id, id_user=id_user
                 )
 
@@ -39,7 +39,7 @@ class FindPetController(IRoute):
                 "pet_id" not in query_string_params and "id_user" in query_string_params
             ):
                 id_user = http_request.query["id_user"]
-                response = self.find_pet_use_case.by_id_user(id_user=id_user)
+                response = self.find_pet_use_case.by_user_id(id_user=id_user)
 
             else:
                 response = {"Success": False, "Data": None}

@@ -35,9 +35,9 @@ class UserRepository(IUserRepository):
         return None
 
     @classmethod
-    def select_user(cls, user_id: int = None, name: str = None) -> List[Users]:
+    def select_user(cls, id_user: int = None, name: str = None) -> List[Users]:
         """Select data in user entity by id or name
-        :param - user_id: user's id
+        :param - id_user: user's id
         :param - name: user's  name
         :return - list with Users selected
         """
@@ -45,16 +45,16 @@ class UserRepository(IUserRepository):
         try:
             query_data = None
 
-            if user_id and not name:
+            if id_user and not name:
                 with DBConnectionHandler() as db_connection:
                     data = (
                         db_connection.session.query(UserModel)
-                        .filter_by(id=user_id)
+                        .filter_by(id=id_user)
                         .one()
                     )
                     query_data = [data]
 
-            elif not user_id and name:
+            elif not id_user and name:
                 with DBConnectionHandler() as db_connection:
                     data = (
                         db_connection.session.query(UserModel)
@@ -63,11 +63,11 @@ class UserRepository(IUserRepository):
                     )
                     query_data = [data]
 
-            elif user_id and name:
+            elif id_user and name:
                 with DBConnectionHandler() as db_connection:
                     data = (
                         db_connection.session.query(UserModel)
-                        .filter_by(id=user_id, name=name)
+                        .filter_by(id=id_user, name=name)
                         .one()
                     )
                     query_data = [data]

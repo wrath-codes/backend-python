@@ -114,7 +114,7 @@ def test_handle_no_user_name():
         "specie": "dog",
         "age": fake.random_number(),
         "user_information": {
-            "user_id": fake.random_number(),
+            "id_user": fake.random_number(),
         },
     }
 
@@ -130,8 +130,8 @@ def test_handle_no_user_name():
     )
 
     # Testing Outputs
-    assert response.status_code == 200
-    assert "error" not in response.body
+    assert response.status_code == 422
+    assert "error" in response.body
 
 
 def test_handle_error_wrong_user_information():

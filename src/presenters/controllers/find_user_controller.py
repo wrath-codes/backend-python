@@ -22,18 +22,18 @@ class FindUserController(IRoute):
 
             query_string_params = http_request.query.keys()
 
-            if "user_id" in query_string_params and "name" in query_string_params:
-                user_id = http_request.query["user_id"]
+            if "id_user" in query_string_params and "name" in query_string_params:
+                id_user = http_request.query["id_user"]
                 name = http_request.query["name"]
                 response = self.find_user_use_case.by_id_and_name(
-                    user_id=user_id, name=name
+                    id_user=id_user, name=name
                 )
 
-            elif "user_id" in query_string_params and "name" not in query_string_params:
-                user_id = http_request.query["user_id"]
-                response = self.find_user_use_case.by_id(user_id=user_id)
+            elif "id_user" in query_string_params and "name" not in query_string_params:
+                id_user = http_request.query["id_user"]
+                response = self.find_user_use_case.by_id(id_user=id_user)
 
-            elif "user_id" not in query_string_params and "name" in query_string_params:
+            elif "id_user" not in query_string_params and "name" in query_string_params:
                 name = http_request.query["name"]
                 response = self.find_user_use_case.by_name(name=name)
 

@@ -31,7 +31,7 @@ class RegisterPetController(IRoute):
 
                 user_information_params = http_request.body["user_information"].keys()
                 if (
-                    "user_id" in user_information_params
+                    "id_user" in user_information_params
                     or "name" in user_information_params
                 ):
                     # if user_information contain correct items
